@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Player from "../entities/Player";
 
 class Play extends Phaser.Scene {
   constructor() {
@@ -6,13 +7,29 @@ class Play extends Phaser.Scene {
   }
 
   create() {
-    const map = this.make.tilemap({ key: "map" });
-    const tileset = map.addTilesetImage("tilesetPlains", "tileset");
+    const map = this.createMap();
+    const layers = this.createLayer(map);
 
-    map.createStaticLayer("environment", tileset);
-    map.createStaticLayer("land", tileset);
+    const player = this.createPlayer();
+    this.playerSpeed = 100;
   }
 
+  createMap() {
+    const map = this.make.tilemap({ key: "map" });
+    map.addTilesetImage("tilesetPlains", "tileset");
+    return map;
+  }
+
+  createLayer(map) {
+    const tileset = map.getTileset("tilesetPlains");
+    const land = map.createStaticLayer("land", tileset);
+    // const environment map.createStaticLayer("environment", tileset);
+    return { land };
+  }
+
+  createPlayer() {
+    return new Player(this, 800, 800);
+  }
   update() {}
 }
 
