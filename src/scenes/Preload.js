@@ -14,12 +14,35 @@ class Preload extends Phaser.Scene {
     );
 
     this.load.spritesheet(
-      "player",
-      "/assets/Character with sword and shield/spritesheet.png",
+      "player-down",
+      "/assets/Character with sword and shield/spritesheet_Down.png",
       {
-        frameWidth: 32,
-        frameHeight: 38,
-        spacing: 32,
+        frameWidth: 64,
+        frameHeight: 64,
+      }
+    );
+    this.load.spritesheet(
+      "player-up",
+      "/assets/Character with sword and shield/spritesheet_UP.png",
+      {
+        frameWidth: 64,
+        frameHeight: 64,
+      }
+    );
+    this.load.spritesheet(
+      "player-left",
+      "/assets/Character with sword and shield/spritesheet_Left.png",
+      {
+        frameWidth: 64,
+        frameHeight: 64,
+      }
+    );
+    this.load.spritesheet(
+      "player-right",
+      "/assets/Character with sword and shield/spritesheet_Right.png",
+      {
+        frameWidth: 64,
+        frameHeight: 64,
       }
     );
   }
