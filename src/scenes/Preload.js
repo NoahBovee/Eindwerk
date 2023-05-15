@@ -45,6 +45,15 @@ class Preload extends Phaser.Scene {
         frameHeight: 64,
       }
     );
+
+    this.load.spritesheet(
+      "enemy",
+      "/assets/Goblin Encounter Core v1.0/Goblin Sword Sprite Sheet 64x64.png",
+      {
+        frameWidth: 64,
+        frameHeight: 64,
+      }
+    );
   }
   create() {
     this.scene.start("PlayScene");
