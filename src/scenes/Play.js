@@ -2,8 +2,10 @@ import Phaser from "phaser";
 import Player from "../entities/Player";
 
 class Play extends Phaser.Scene {
-  constructor() {
+  constructor(config) {
     super("PlayScene");
+
+    this.config = config;
   }
 
   create() {
@@ -12,6 +14,8 @@ class Play extends Phaser.Scene {
 
     const player = this.createPlayer();
     this.playerSpeed = 100;
+
+    this.setupFollowupCameraOn(player);
   }
 
   createMap() {
@@ -28,9 +32,17 @@ class Play extends Phaser.Scene {
   }
 
   createPlayer() {
-    return new Player(this, 800, 800);
+    const randomX = Phaser.Math.Between(0, 1600);
+    const randomY = Phaser.Math.Between(0, 1600);
+    return new Player(this, randomX, randomY);
   }
-  update() {}
+  setupFollowupCameraOn(player) {
+    const { height, width, mapOffset } = this.config;
+
+    this.physics.world.setBounds(0, 0, width + mapOffset, height);
+    this.cameras.main.setBounds(0, 0, width + mapOffset, height).setZoom(1.5);
+    this.cameras.main.startFollow(player);
+  }
 }
 
 export default Play;
